@@ -45,6 +45,23 @@
 </main>
 
 
+<!-- Con este modulo de sweet alert y es uno del motor de platillas EJS a continuacion se establecen los mensajes de confirmacion -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <% if(alert) { %> 
+
+    <script>
+      Swal.fire({
+        title: '<%= alertTitle %>',
+        text: '<%= alertMessage %>',
+        icon: '<%= alertIcon %>',
+        showConfirmButton: '<%= showConfirmButton %>',
+        timer: '<%= timer %>',
+      }).then(() => {
+        window.location = '/<%= ruta %>'
+      })
+    </script>
+  <% } %>
     
   </body>
 </html>
