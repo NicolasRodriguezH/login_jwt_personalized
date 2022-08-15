@@ -1,7 +1,6 @@
 const express = require('express')
 const cookieParser = require('cookie-parser')
 const dotenv = require('dotenv')
-const { Router } = require('express')
 
 const app = express()
 
@@ -19,7 +18,7 @@ app.use(express.json())
 dotenv.config({path:'./env/.env'})
 
 /* Para poder trabajr con las cookies */
-/* app.use(cookieParser()) */
+app.use(cookieParser())
 
 /* Llamaos a las rutas en router */
 app.use('/', require('./routes/router'))

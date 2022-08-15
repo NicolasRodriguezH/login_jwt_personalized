@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+
+    <title>Login Personalized</title>
+    <style>
+        body {
+            /* display: flex; */
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="cols-lg-12 shadow-lg p-3 mb-5">
+                <div class="card border-primary">
+                    <div class="card-header bg-primary text-white">Registrarse</div>
+                        <div class="card-body text-primary">
+                            <form action="/register" method="post">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Nombre Completo</label>
+                                    <input type="text" name="name" id="name" class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="user" class="form-label">Nombre de Usuario</label>
+                                    <input type="text" name="user" id="user" class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="pass" class="form-label">Password</label>
+                                    <input type="passwrod" name="pass" id="pass" class="form-control">
+                                </div>
+
+                                
+                        </div>
+                                <div class="card-footer bg-transparent border-primary">
+                                    <a href="/" type="button" class="btn btn-bd-primary">Cancelar</a>
+                                    <button type="submit" class="btn btn-primary">Registrar</button>
+                                </div>
+                            </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

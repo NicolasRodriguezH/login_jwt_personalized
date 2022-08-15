@@ -1,8 +1,7 @@
 const jwt = require('jsonwebtoken')
 const bcryptjs = require('bcryptjs')
-const conexion = require('./database/db')
+const connection = require('../database/db')
 const {promisify} = require('util')
-const { decode } = require('punycode')
 
 /* Procedimineto para registrarnos */
 
@@ -14,7 +13,7 @@ exports.register = async (req, res) => {
 
         let hash = await bcryptjs.hash(pass, 8)
 
-        conexion.query("INSERT INTO users SET ?", {user:user, name:name, pass:hash}, (error, results) => {
+        connection.query("INSERT INTO users SET ?", {user:user, name:name, pass:hash}, (error, results) => {
             if(error) console.log(error)
             res.redirect('/')
         })
@@ -41,7 +40,7 @@ exports.login = async (req, res) => {
                 ruta: 'login'
             })
         } else {
-            conexion.query('SELECT * FROM users WHERE user = ?', [user], async (error, results) => {
+            connection.query('SELECT * FROM users WHERE user = ?', [user], async (error, results) => {
                 if (results.lengh == 0 || !(await bcryptjs.compare(pass, results[0].pass))) {
                     res.render('login', {
                         alert:true,
@@ -91,14 +90,14 @@ exports.isAuthenticated = async (req, res, next) => {
     if (req.cookies.jwt) {
         try {
             const decoded = await promisify(jwt.verify)(req.cookie.jwt, process.env.JWT_SECRET)
-            conexion.query('SELECT * FROM users WHERE id = ?', [decoded.id], (error, results) => {
+            connection.query('SELECT * FROM users WHERE id = ?', [decoded.id], (error, results) => {
                 if(!results) {return next()}
                 req.user = results[0]
                 return next()
             })
         } catch (error) {
             console.log(error)
-            next()
+            return next()
         }
     } else {
         res.redirect('/login')
